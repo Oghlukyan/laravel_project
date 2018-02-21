@@ -4,16 +4,19 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+
 class AdminLoginController extends Controller
 {
     public function __construct()
     {
         $this->middleware('guest:admin');
     }
+
     public function showLoginForm()
     {
         return view('admin.admin-login');
     }
+
     public function login(Request $request)
     {
         // Validate the form data
@@ -28,5 +31,14 @@ class AdminLoginController extends Controller
         }
         // if unsuccessful, then redirect back to the login with the form data
         return redirect()->back()->withInput($request->only('username'));
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return redirect('/admin');
     }
 }
