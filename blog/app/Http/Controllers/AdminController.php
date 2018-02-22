@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+
+
+use App\Http\Helper\Models;
 
 class AdminController extends Controller
 {
+    use Models;
     public function __construct()
     {
         $this->middleware('auth:admin');
@@ -16,12 +19,12 @@ class AdminController extends Controller
     }
 
     public function getUsers(){
-        $users = DB::table('users')->get();
+        $users = $this->getAll('users');
         return view('admin.admin-users')->with('users', $users);
     }
 
     public function getAdmins(){
-        $admins = DB::table('admins')->get();
+        $admins = $this->getAll('admins');
         return view('admin.admin-admins')->with('admins', $admins);
     }
 }

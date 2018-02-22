@@ -7,16 +7,21 @@
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="{{ asset("css/materialize.min.css") }}"  media="screen,projection"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Styles -->
     </head>
     <body>
         <div id="app-admin">
+            @include('admin.admin-header')
             @yield('content')
         </div>
 
         <!-- Scripts -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>
     </body>
 </html>
