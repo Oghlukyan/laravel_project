@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
-
 use App\Http\Helper\Models;
+use App\Services\Menu;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -26,5 +26,16 @@ class AdminController extends Controller
     public function getAdmins(){
         $admins = $this->getAll('admins');
         return view('admin.admin-admins')->with('admins', $admins);
+    }
+
+    public function getMenus(){
+        $menus = $this->getAll('menus');
+        return view('admin.admin-menus')->with('menus', $menus);
+    }
+
+    public function insertMenu(Request $request){
+        Menu::insertToDB($request);
+        $menus = $this->getAll('menus');
+        return view('admin.admin-menus')->with('menus', $menus);
     }
 }
