@@ -12,6 +12,40 @@ use Illuminate\Http\Request;
 
 interface Menu
 {
-    public static function toArray(Request $request);
-    public static function insertToDB(Request $request);
+    /*
+     * get menu
+     * @params $id
+     *
+     * @return obj
+     */
+    public function get($id);
+    /*
+     * get menus
+     *
+     * @return obj
+     */
+    public function getAll();
+
+    /*
+     * update existing menu
+     * @params $id,$data
+     *
+     * @return boolean;
+     */
+    public function put($id,$data);
+
+    /*
+     * insert menu
+     * @params $data
+     *
+     * @return boolean;
+     */
+    public function post($data);
+    /*
+     * delete menu
+     * @params $id
+     *
+     * @return boolean
+     */
+    public function delete($id);
 }

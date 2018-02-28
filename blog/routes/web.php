@@ -26,6 +26,8 @@ Route::prefix('admin')->group(function() {
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/users-list', 'AdminController@getUsers');
     Route::get('/admins-list', 'AdminController@getAdmins');
-    Route::get('/menus', 'AdminController@getMenus');
-    Route::post('/menus', 'AdminController@insertMenu')->name('admin.menus.submit');
+    Route::prefix('menus')->group(function() {
+        Route::get('/', 'MenuController@get');
+        Route::post('/store', 'MenuController@store')->name('admin.menus.submit');
+    });
 });

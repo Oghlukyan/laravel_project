@@ -14,21 +14,31 @@ use Illuminate\Support\Facades\DB;
 
 class Menu implements Interfaces\Menu
 {
-    public static function toArray(Request $request){
-        $title = $request->input('title');
-        $text = $request->input('text');
-        $meta_title = $request->input('meta_title');
-        $meta_description = $request->input('meta_description');
-        $status = $request->input('status') ? '1': '0';
-        $number = $request->input('number');
-        $currentTime = date('Y-m-d H:i:s');
-
-        $data = ['title'=>$title, 'text'=>$text, 'meta_title'=>$meta_title, 'meta_description'=>$meta_description, 'status'=>$status, 'number'=>$number, 'updated_at'=>$currentTime, 'created_at'=>$currentTime];
-        return $data;
+    protected $model;
+    public function __construct()
+    {
+        $this->model = new \App\Models\Menu();
     }
 
-    public static function insertToDB(Request $request){
-        $data = self::toArray($request);
-        DB::table('menus')->insert($data);
+    public function get($id){
+        return $this->model->whereId($id)->first();
+    }
+
+    public function getAll(){
+        return $this->model->orderBy('number')->get();
+    }
+
+    public function post($data){
+        // $this->model->insert($data);
+        // OR
+        // $this->>model->save();
+    }
+
+    public function put($id,$data){
+        // $this->model->whereId($id)->update($data);
+    }
+
+    public function delete($id){
+        // $this->model->whereId($id)->delete();
     }
 }
