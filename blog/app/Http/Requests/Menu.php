@@ -24,7 +24,11 @@ class Menu extends FormRequest
     public function rules()
     {
         return [
-            // validation rules here
+            'title' => 'required',
+            'text' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
+            'number' => 'required',
         ];
     }
 }

@@ -8,7 +8,7 @@
 
 namespace App\Interfaces;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Menu as MenuRequest;
 
 interface Menu
 {
@@ -27,25 +27,26 @@ interface Menu
     public function getAll();
 
     /*
-     * update existing menu
-     * @params $id,$data
-     *
-     * @return boolean;
-     */
-    public function put(Request $request);
-
-    /*
      * insert menu
      * @params $data
      *
      * @return boolean;
      */
-    public function post(Request $request);
+    public function post($data);
+
+    /*
+     * update existing menu
+     * @params $id,$data
+     *
+     * @return boolean;
+     */
+    public function put($id, $data);
+
     /*
      * delete menu
      * @params $id
      *
      * @return boolean
      */
-    public function remove(Request $request);
+    public function remove($id);
 }

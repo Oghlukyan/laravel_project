@@ -4,9 +4,8 @@
         <p>Are you sure you want to delete?</p>
     </div>
     <div class="modal-footer">
-        <form method="post" action="{{ route('admin.menus.modification') }}">
+        <form method="post" action="{{ route('admin.menus.modification.delete') }}">
             {{ csrf_field() }}
-            <input type="hidden" name="delete">
             <input type="hidden" name="id" id="id" value="!@!">
             <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat red">Yes</button>
             <button type="button" class="modal-action modal-close waves-effect waves-green btn-flat green">No</button>

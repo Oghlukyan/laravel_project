@@ -28,6 +28,8 @@ Route::prefix('admin')->group(function() {
     Route::get('/admins-list', 'AdminController@getAdmins');
     Route::prefix('menus')->group(function() {
         Route::get('/', 'MenuController@get');
-        Route::post('/', 'MenuController@store')->name('admin.menus.modification');
+        Route::post('/add', 'MenuController@store')->name('admin.menus.modification.add');
+        Route::post('/edit', 'MenuController@store')->name('admin.menus.modification.edit');
+        Route::post('/store', 'MenuController@remove')->name('admin.menus.modification.delete');
     });
 });

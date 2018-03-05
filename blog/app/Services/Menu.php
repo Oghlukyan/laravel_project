@@ -9,7 +9,6 @@
 namespace App\Services;
 
 use App\Interfaces;
-use Illuminate\Http\Request;
 
 class Menu implements Interfaces\Menu
 {
@@ -27,15 +26,30 @@ class Menu implements Interfaces\Menu
         return $this->model->orderBy('number')->get();
     }
 
-    public function put(Request $request){
-        $id = $request->input('id');
+    public function post($data){
+        $title = $data['title'];
+        $text = $data['text'];
+        $meta_title = $data['meta_title'];
+        $meta_description = $data['meta_description'];
+        $status = $data['status']=='on' ? '1': '0';
+        $number = $data['number'];
+        $currentTime = date('Y-m-d H:i:s');
 
-        $title = $request->input('title');
-        $text = $request->input('text');
-        $meta_title = $request->input('meta_title');
-        $meta_description = $request->input('meta_description');
-        $status = $request->input('status') ? '1': '0';
-        $number = $request->input('number');
+        $data = ['title'=>$title, 'text'=>$text, 'meta_title'=>$meta_title, 'meta_description'=>$meta_description, 'status'=>$status, 'number'=>$number, 'updated_at'=>$currentTime, 'created_at'=>$currentTime];
+        $this->model->insert($data);
+    }
+
+    public function put($id, $data){
+        $title = $data['title'];
+        $text = $data['text'];
+        $meta_title = $data['meta_title'];
+        $meta_description = $data['meta_description'];
+        if($data['status'] == null)
+            dd('asdf');
+        else
+            dd('cbnvbcn');
+        $status = $data['status']=='on' ? '1': '0';
+        $number = $data['number'];
         $currentTime = date('Y-m-d H:i:s');
         $createdDate = $this->model->getCreatedDate($id);
 
@@ -43,21 +57,7 @@ class Menu implements Interfaces\Menu
         $this->model->change($id, $data);
     }
 
-    public function post(Request $request){
-        $title = $request->input('title');
-        $text = $request->input('text');
-        $meta_title = $request->input('meta_title');
-        $meta_description = $request->input('meta_description');
-        $status = $request->input('status') ? '1': '0';
-        $number = $request->input('number');
-        $currentTime = date('Y-m-d H:i:s');
-
-        $data = ['title'=>$title, 'text'=>$text, 'meta_title'=>$meta_title, 'meta_description'=>$meta_description, 'status'=>$status, 'number'=>$number, 'updated_at'=>$currentTime, 'created_at'=>$currentTime];
-        $this->model->insert($data);
-    }
-
-    public function remove(Request $request){
-        $id = $request->input('id');
+    public function remove($id){
         $this->model->remove($id);
     }
 }

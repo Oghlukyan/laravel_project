@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use \App\Http\Requests\Menu as MenuRequest;
 use Illuminate\Http\Request;
 
 class MenuController extends AdminController
@@ -18,26 +19,29 @@ class MenuController extends AdminController
         return view('admin.main.menus.admin-menus')->with('menus', $menus);
     }
 
-    public function store(\App\Http\Requests\Menu $request){
-        if ($request->has('update')) {
-            $this->put($request);
-        } elseif ($request->has('insert')) {
-            $this->post($request);
-        } elseif ($request->has('delete')) {
-            $this->remove($request);
+    public function store(MenuRequest $request){
+        if ($request->has('insert')) {
+            $data = $request->all();
+            $this->post($data);
+        } elseif ($request->has('update')) {
+            $id = $request->input('id');
+            $data = $request->all();
+            $this->put($id, $data);
         }
         return $this->get();
     }
 
-    public function put(Request $request){
-        $this->menu->put($request);
+    public function post($data){
+        $this->menu->post($data);
     }
 
-    public function post(Request $request){
-        $this->menu->post($request);
+    public function put($id, $data){
+        $this->menu->put($id, $data);
     }
 
-    public function remove(Request $request){
-        $this->menu->remove($request);
+    public function remove(){
+        $id = request('id');
+        $this->menu->remove($id);
+        return $this->get();
     }
 }
