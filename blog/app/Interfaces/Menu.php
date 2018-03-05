@@ -32,7 +32,7 @@ interface Menu
      *
      * @return boolean;
      */
-    public function put($id,$data);
+    public function put(Request $request);
 
     /*
      * insert menu
@@ -40,12 +40,12 @@ interface Menu
      *
      * @return boolean;
      */
-    public function post($data);
+    public function post(Request $request);
     /*
      * delete menu
      * @params $id
      *
      * @return boolean
      */
-    public function delete($id);
+    public function remove(Request $request);
 }

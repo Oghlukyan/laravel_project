@@ -1,10 +1,10 @@
-<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add New Menu</a>
-<div id="modal1" class="modal">
+<div id="addMenuModal" class="modal">
     <div class="modal-content">
         <h4>Add New Menu</h4>
         <div class="row">
-            <form class="col s12" method="post" action="{{route('admin.menus.submit')}}">
+            <form class="col s12" method="post" action="{{ route('admin.menus.modification') }}">
                 {{ csrf_field() }}
+                <input type="hidden" name="insert">
                 <div class="row">
                     <div class="input-field col s12">
                         <input name="title" id="title" type="text" class="validate" required="" aria-required="true">
@@ -34,7 +34,7 @@
                         <label for="number">Number</label>
                     </div>
                 </div>
-                <button class="btn modal-action waves-effect waves-light" type="submit" name="action">Add</button>
+                <button class="btn modal-action waves-effect waves-light green" type="submit" name="action">Add</button>
             </form>
         </div>
         <script>
@@ -47,7 +47,6 @@
 
 <script>
     $(document).ready(function(){
-        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
-        $('.modal').modal();
+        $('#addMenuModal').modal();
     });
 </script>

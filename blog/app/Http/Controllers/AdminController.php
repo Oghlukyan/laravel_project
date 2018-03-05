@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Helper\Models;
-use App\Services\Menu;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -15,17 +13,17 @@ class AdminController extends Controller
     }
 
     public function index(){
-        return view('admin.admin-home');
+        return view('admin.main.admin-home');
     }
 
     public function getUsers(){
         $users = $this->getAll('users');
-        return view('admin.admin-users')->with('users', $users);
+        return view('admin.main.admin-users')->with('users', $users);
     }
 
     public function getAdmins(){
         $admins = $this->getAll('admins');
-        return view('admin.admin-admins')->with('admins', $admins);
+        return view('admin.main.admin-admins')->with('admins', $admins);
     }
 
 }

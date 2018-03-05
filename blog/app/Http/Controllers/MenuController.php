@@ -15,31 +15,29 @@ class MenuController extends AdminController
 
     public function get(){
         $menus = $this->menu->getAll();
-        return view('admin.admin-menus')->with('menus', $menus);
+        return view('admin.main.menus.admin-menus')->with('menus', $menus);
     }
 
     public function store(\App\Http\Requests\Menu $request){
-        if($request->has('update')){
-
-        }elseif ($request->has('insert')){
-            $model = $this->post($request);
-        }else{
-            return back()->with('status','Not Valid Request');
+        if ($request->has('update')) {
+            $this->put($request);
+        } elseif ($request->has('insert')) {
+            $this->post($request);
+        } elseif ($request->has('delete')) {
+            $this->remove($request);
         }
+        return $this->get();
     }
 
-    public function put($id,$request){
-        // add your logic for request Or if the format valid ->
-        return $this->menu->put($id,$request);
+    public function put(Request $request){
+        $this->menu->put($request);
     }
 
-    public function post($request){
-        // add your logic for request Or if the format valid ->
-        return $this->menu->post($request);
+    public function post(Request $request){
+        $this->menu->post($request);
     }
 
-    public function delete($id){
-        // add your logic for request Or if the format valid ->
-        return $this->menu->delete($id);
+    public function remove(Request $request){
+        $this->menu->remove($request);
     }
 }
