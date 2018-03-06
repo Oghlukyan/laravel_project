@@ -27,7 +27,7 @@ class MenuController extends AdminController
             $data = $request->all();
             $this->put($id, $data);
         }
-        return $this->get();
+        return back();
     }
 
     public function post($data){
@@ -41,6 +41,6 @@ class MenuController extends AdminController
     public function remove(){
         $id = request('id');
         $this->menu->remove($id);
-        return $this->get();
+        return back();
     }
 }
