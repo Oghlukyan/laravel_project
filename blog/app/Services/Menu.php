@@ -31,7 +31,7 @@ class Menu implements Interfaces\Menu
         $text = $data['text'];
         $meta_title = $data['meta_title'];
         $meta_description = $data['meta_description'];
-        $status = $data['status']=='on' ? '1': '0';
+        $status = array_key_exists('status', $data);
         $number = $data['number'];
         $currentTime = date('Y-m-d H:i:s');
 
@@ -44,11 +44,7 @@ class Menu implements Interfaces\Menu
         $text = $data['text'];
         $meta_title = $data['meta_title'];
         $meta_description = $data['meta_description'];
-        if($data['status'] == null)
-            dd('asdf');
-        else
-            dd('cbnvbcn');
-        $status = $data['status']=='on' ? '1': '0';
+        $status = array_key_exists('status', $data);
         $number = $data['number'];
         $currentTime = date('Y-m-d H:i:s');
         $createdDate = $this->model->getCreatedDate($id);

@@ -26,7 +26,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
     Route::get('/users-list', 'AdminController@getUsers');
     Route::get('/admins-list', 'AdminController@getAdmins');
-    Route::prefix('menus')->group(function() {
+    Route::prefix('/menus')->group(function() {
         Route::get('/', 'MenuController@get');
         Route::post('/add', 'MenuController@store')->name('admin.menus.modification.add');
         Route::post('/edit', 'MenuController@store')->name('admin.menus.modification.edit');

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use \App\Http\Requests\Menu as MenuRequest;
-use Illuminate\Http\Request;
 
 class MenuController extends AdminController
 {

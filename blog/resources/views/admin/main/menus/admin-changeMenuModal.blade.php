@@ -56,7 +56,7 @@
                 modal.find('.modal-content #text').val(menu['text']);
                 modal.find('.modal-content #meta_title').val(menu['meta_title']);
                 modal.find('.modal-content #meta_description').val(menu['meta_description']);
-                modal.find('.modal-content #status').prop('checked', menu);
+                modal.find('.modal-content #status').prop('checked', menu['status']);
                 modal.find('.modal-content #number').val(menu['number']);
             }
         });
